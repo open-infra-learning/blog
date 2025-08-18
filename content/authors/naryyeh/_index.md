@@ -1,9 +1,13 @@
-+++
-title = "Naryyeh"
-+++
+---
+title: "Nary Yeh"
+bio: "Data Engineer and ML Platform Specialist with 5+ years of experience building scalable data pipelines and machine learning platforms."
+headline: "Senior Data Engineer"
+# image: "authors/naryyeh.jpg"
+email: "naryyeh@example.com"
+website: "https://naryyeh-website.com"
+github: "https://github.com/naryyeh"
+linkedin: "https://linkedin.com/in/naryyeh"
+twitter: "https://twitter.com/naryyeh"
+---
 
-Flyte Committer
-
-## About Me
-
-I'm passionate about building scalable data infrastructure and machine learning platforms. Currently contributing to Flyte, an open-source workflow orchestration platform for data and ML.
+Welcome to Nary Yeh's page! I'm passionate about building robust data infrastructure and machine learning platforms that scale.
