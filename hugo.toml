@@ -1,0 +1,42 @@
+baseURL = 'https://example.org/'
+languageCode = 'en-us'
+title = 'My New Hugo Site'
+# Use Chinese, Japanese, Korean char
+hasCJKLanguage = true
+
+theme = "DoIt"
+
+[menu]
+  [[menu.main]]
+    identifier = "posts"
+    # Things (e.g. emoji) added before name
+    pre = ""
+    # Things added after name
+    post = ""
+    name = "Posts"
+    url = "/posts/"
+    # Title shown when mouse hovering the menu
+    title = ""
+    weight = 1
+  [[menu.main]]
+    identifier = "tags"
+    pre = ""
+    post = ""
+    name = "Tags"
+    url = "/tags/"
+    title = ""
+    weight = 2
+  [[menu.main]]
+    identifier = "categories"
+    pre = ""
+    post = ""
+    name = "Categories"
+    url = "/categories/"
+    title = ""
+    weight = 3
+
+[markup]
+  # syntac highlight (https://gohugo.io/content-management/syntax-highlighting)
+  [markup.highlight]
+    # false is needed (https://github.com/dillonzq/LoveIt/issues/158)
+    noClasses = false
