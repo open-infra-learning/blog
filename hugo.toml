@@ -329,3 +329,8 @@ theme = "DoIt"
   category = "categories"
   tag = "tags"
   series = "series"
+
+# For github page
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
