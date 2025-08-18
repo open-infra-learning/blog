@@ -1,9 +1,9 @@
 name = "Jiawei Jiang"
-email = "...@gmail.com"
-link = ""
-avatar = ""
-bio = "Flyte Committer"
-location = ""
-website = ""
-github = ""
-twitter = ""
+bio = "Machine Learning Engineer and Open Source Contributor"
+headline = "Flyte Committer"
+image = "authors/jiaweijiang.jpg"
+social = [
+  { github = "https://github.com/jiaweijiang" },
+  { linkedin = "https://linkedin.com/in/jiaweijiang" },
+  { email = "mailto:jiaweijiang@example.com" },
+]

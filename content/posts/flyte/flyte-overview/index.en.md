@@ -1,18 +1,17 @@
-+++
-title = 'From Chaos to Scale-Orchestrating AI Pipelines with Flyte'
-date = 2025-08-18T11:00:19+08:00
-draft = false
-authors= ["naryyeh", "jiaweijiang"]
-series = ["Flyte"]
-tags = ["Data Engineer", "ML Platform"]
-categories = ["Introduction"]
-featuredImage = "./img/flyte_cover.jpg"
-+++
+---
+title: 'From Chaos to Scale-Orchestrating AI Pipelines with Flyte'
+date: 2025-08-18T11:00:19+08:00
+draft: false
+authors: ["naryyeh", "jiaweijiang"]
+series: ["Flyte"]
+tags: ["Data Engineer", "ML Platform"]
+categories: ["Introduction"]
+---
 
 Since the term *big data* first introduced in the early 1990s, the volume of global data has grown at an exponential pace. As machine learning continues to rise, companies are building countless AI pipelines to solve real-world business problems, from predicting ad clicks to personalizing recommendations.
 
 
-{{< image src="./img/data-growth.png" width="500" caption="Figure 1. The exponential growth of global data (Credit: [1])" class="center" >}} 
+{{< figure src="./img/data-growth.png" width="500" caption="Figure 1. The exponential growth of global data (Credit: [1])" class="center" >}} 
 
 At its core, an AI pipeline can be thought of as:
 
