@@ -3,7 +3,7 @@ title = 'First Post'
 date = 2025-08-18T11:00:19+08:00
 draft = false
 authors= ["author1", "author2"]
-series = ["Test"]
+series = ["Hugo Basics"]
 tags = ["hugo", "test"]
 categories = ["Test"]
 +++
