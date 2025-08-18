@@ -1,12 +1,10 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>My New Hugo Site</title>
-        <link>http://localhost:1313/</link>
-        <description>A multi-author blog powered by Hugo and DoIt theme</description>
+        <title>Author1 - Author - My New Hugo Site</title>
+        <link>http://localhost:1313/authors/author1/</link>
+        <description>Author1 - Author - My New Hugo Site</description>
         <generator>Hugo -- gohugo.io</generator><language>en-us</language><managingEditor>admin@example.com (Site Admin)</managingEditor>
-            <webMaster>admin@example.com (Site Admin)</webMaster><lastBuildDate>Mon, 18 Aug 2025 11:00:19 &#43;0800</lastBuildDate>
-            <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
-        <item>
+            <webMaster>admin@example.com (Site Admin)</webMaster><lastBuildDate>Mon, 18 Aug 2025 11:00:19 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/authors/author1/" rel="self" type="application/rss+xml" /><item>
     <title>First_post</title>
     <link>http://localhost:1313/first_post/</link>
     <pubDate>Mon, 18 Aug 2025 11:00:19 &#43;0800</pubDate><author>
