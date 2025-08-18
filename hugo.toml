@@ -242,13 +242,21 @@ theme = "DoIt"
     title = ""
     weight = 2
   [[menu.main]]
+    identifier = "series"
+    pre = ""
+    post = ""
+    name = "Series"
+    url = "/series/"
+    title = ""
+    weight = 3
+  [[menu.main]]
     identifier = "categories"
     pre = ""
     post = ""
     name = "Categories"
     url = "/categories/"
     title = ""
-    weight = 3
+    weight = 4
   [[menu.main]]
     identifier = "authors"
     pre = ""
@@ -256,7 +264,7 @@ theme = "DoIt"
     name = "Authors"
     url = "/authors/"
     title = ""
-    weight = 4
+    weight = 5
 
 # Hugo markup configuration
 [markup]
