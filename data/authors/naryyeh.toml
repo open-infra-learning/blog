@@ -1,6 +1,6 @@
 name = "Nary Yeh"
-bio = "Data Engineer and ML Platform Specialist"
-headline = "Senior Data Engineer"
+bio = "ML Platform Engineer & Open-Source Contributer"
+headline = "Software Engineer"
 image = "authors/naryyeh.jpg"
 social = [
   { github = "https://github.com/machichima" },
