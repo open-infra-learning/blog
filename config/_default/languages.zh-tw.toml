@@ -2,7 +2,7 @@ disabled = false
 languageCode = "zh-tw"
 languageName = "繁體中文"
 weight = 2
-title = "Blowfish"
+title = "Open Intra Blog"
 
 [params]
   displayName = "繁中"
