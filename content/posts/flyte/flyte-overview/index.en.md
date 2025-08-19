@@ -3,8 +3,8 @@ title: "From Chaos to Scale — Orchestrating AI Pipelines with Flyte"
 date: 2025-08-18T11:00:19+08:00
 draft: false
 authors: ["naryyeh", "jiaweijiang"]
-series: ["Flyte"]
-tags: ["Introduction", "Data Engineer", "ML Platform"]
+series: ["How to Flyte"]
+tags: ["data-engineer", "ml-platform"]
 ---
 
 Since the term *big data* first introduced in the early 1990s, the volume of global data has grown at an exponential pace. As machine learning continues to rise, companies are building countless AI pipelines to solve real-world business problems, from predicting ad clicks to personalizing recommendations.
