@@ -1,5 +1,5 @@
 ---
-title: 'From Chaos to Scale-Orchestrating AI Pipelines with Flyte'
+title: "From Chaos to Scale — Orchestrating AI Pipelines with Flyte"
 date: 2025-08-18T11:00:19+08:00
 draft: false
 authors: ["naryyeh", "jiaweijiang"]
@@ -29,22 +29,22 @@ platform designed to support tens of thousands of AI pipelines at scale.
 
 1. **Multi-cluster deployment** - Reliably ship code to production at scale, without endless manual fixes
     - 🤕 **Without Flyte**:
-        - Users need to manually setup clusters for different domains (e.g. development and production)
-        - Need to take care of moving workflow between domains and clusters
-        - Manual intervention required when nodes fail
+        - Users need to manually set up clusters for different domains (e.g. development and production).
+        - Extra care should be taken to move workflow between domains and clusters
+        - Manual intervention is needed when nodes fail.
     - 😄 **With Flyte**:
-        - Simply execute the workflow with `--domain` argument specifying "development" or "production"
-        - Flyte automatically determines where to run the code for you
-        - If any node failed, Flyte will automatically transfer the workflow to other available nodes
+        - Users can simply execute the workflow with `--domain` argument specifying "development" or "production".
+        - Flyte automatically determines where to run the code for you.
+        - If any node failed, Flyte will automatically transfer the workflow to other available nodes.
 2. **Robust pipeline** - Build resilient workflows that handle failures gracefully and ensure data integrity
     - 🤕 **Without Flyte**: 
-        - Runtime type errors crash production pipelines
-        - Inconsistent environments cause "works on my machine" issues
-        - Difficult to track which exact code version produced results
+        - Runtime type errors crash production pipelines.
+        - Inconsistent environments cause "works on my machine" issues.
+        - Tracking the exact code version that produced results can be difficult.
     - 😄 **With Flyte**: 
-        - Strong typing catches errors before deployment
-        - Containerized tasks ensure identical environments
-        - Immutable workflow versions guarantee reproducibility
+        - Strong typing catches errors before deployment.
+        - Containerized tasks ensure identical environments.
+        - Immutable workflow versions guarantee reproducibility.
 
 ## Features
 
