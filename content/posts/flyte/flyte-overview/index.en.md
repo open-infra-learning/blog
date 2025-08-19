@@ -52,25 +52,23 @@ platform designed to support tens of thousands of AI pipelines at scale.
 Flyte tackles five specific challenges that AI teams commonly face:
 
 1. **Scalability** - Handle massive growth in requests and data with efficient concurrency
-    - Buliding upon Kubernetes, Flyte is deeply integrated with it and can assign and move
-      workflows between clusters with ease, being able to handle scaling and node failure
-      cases.
+    - Built on Kubernetes, Flyte automatically scales workflows across clusters and
+    handles node failures without manual intervention.
 2. **Reusability** - Reuse components across pipelines and business units, avoiding “reinventing the wheel."
-    - Caching the output of tasks for re-using to save time and compute resources
+    - Centralized tasks and workflows components management across teams with cache
+    support to save time and compute resources
 3. **Reproducibility** - Ensure experiments can be replicated by mirroring dev environments in production
-    - Flyte enables users to set the packages and resources needed for the task, which can
-      be used accross any clusters, ensuring the consistency to the result.
+    - Versions all components with packages and resources set, which guarantees
+    result consistency across development and production environments
 4. **Maintainability** - Operate and update thousands of pipelines with ease
-    - Exposes simple SDK interface and separates workflow management from execution,
-    allowing users to define workflows once in a central location and run them across
-    multiple compute clusters as needed.
+    - Simple SDK interface separates workflow management from execution, allowing users
+    to define workflows once in a central location and run them across multiple clusters
 
 ![multi-region routing](./img/multi_region-routing.png "Figure 2. Flyte multi-region routing setup (Credit: [4])") 
 
 5. **Extensibility** - Integrate smoothly with third-party tools and services
-    - Enable running tasks on popular data platforms like Databricks, Snowflake, and AWS
-    Batch while still providing centralized workflow management, monitoring, and error
-    handling
+    - Connects with popular data platforms like Databricks, Snowflake, and AWS Batch while
+    providing centralized workflow management, monitoring, and error handling
 
 Today, Flyte is trusted by leading companies such as Tesla, Spotify, LinkedIn, and Toyota, and runs over 30 million tasks per day. For example, in a recent LinkedIn Engineering blog [4], the team unveiled their next-generation AI pipelines powered by Flyte, achieving 20–30× faster training and launch times, while enabling them to train models 200× larger than before.
 
