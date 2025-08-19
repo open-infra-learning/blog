@@ -15,25 +15,35 @@ Since the term *big data* first introduced in the early 1990s, the volume of glo
 
 At its core, an AI pipeline can be thought of as:
 
+{{< katex >}}
 $$
 \text{AI Pipeline = Code + Data [2]}
 $$
 
-But in practice, building and managing these pipelines is far from simple. Developers often face two major problems:
+
+But in practice, building and managing these pipelines is far from simple. Developers often face
+problems for setting up multi-cluster deployment and maintaining robuest pipeline. To address these
+pain points, Lyft created Flyte [3], an open-source orchestration platform designed to support tens
+of thousands of AI pipelines at scale.
 
 1. **Multi-cluster deployment** - Reliably ship code to production at scale, without endless manual fixes
-    - 🤕 **Wihtout Flyte**: User need to manually setup clusters for different domains
-    (e.g. development and production), and need to take care of moving workflow between
-    domains and clusters.
-    - 😄 **With Flyte**: Simply execute the workflow with arguments `--domain` specifying
-    "development" or "production", Flyte will determine where to run the code for you! If
-    any node failed, Flyte will automatically transfer the workflow to other available
-    nodes!
-2. **Data flow** - Ensure data moves smoothly across a complex workflow of preprocessing, model training, serving, and evaluation
-    - Without Flyte: 
-    - With Flyte: 
-
-To address these pain points, Lyft created Flyte [3], an open-source orchestration platform designed to support tens of thousands of AI pipelines at scale.
+    - 🤕 **Without Flyte**:
+        - Users need to manually setup clusters for different domains (e.g. development and production)
+        - Need to take care of moving workflow between domains and clusters
+        - Manual intervention required when nodes fail
+    - 😄 **With Flyte**:
+        - Simply execute the workflow with `--domain` argument specifying "development" or "production"
+        - Flyte automatically determines where to run the code for you
+        - If any node failed, Flyte will automatically transfer the workflow to other available nodes
+2. **Robust pipeline** - Build resilient workflows that handle failures gracefully and ensure data integrity
+    - 🤕 **Without Flyte**: 
+        - Runtime type errors crash production pipelines
+        - Inconsistent environments cause "works on my machine" issues
+        - Difficult to track which exact code version produced results
+    - 😄 **With Flyte**: 
+        - Strong typing catches errors before deployment
+        - Containerized tasks ensure identical environments
+        - Immutable workflow versions guarantee reproducibility
 
 ## Features
 
