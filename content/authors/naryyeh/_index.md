@@ -1,13 +1,11 @@
 ---
 title: "Nary Yeh"
-bio: "Data Engineer and ML Platform Specialist with 5+ years of experience building scalable data pipelines and machine learning platforms."
-headline: "Senior Data Engineer"
-# image: "authors/naryyeh.jpg"
-email: "naryyeh@example.com"
-website: "https://naryyeh-website.com"
-github: "https://github.com/naryyeh"
-linkedin: "https://linkedin.com/in/naryyeh"
-twitter: "https://twitter.com/naryyeh"
+bio: "ML Platform Engineer & Open-Source Contributer"
+headline: "Software Engineer"
+image: "https://www.gravatar.com/avatar/f34123bf2509aeaea48b103a9e640b7e?s=200"
 ---
 
-Welcome to Nary Yeh's page! I'm passionate about building robust data infrastructure and machine learning platforms that scale.
+I'm passionate about building robust data infrastructure and machine learning platforms
+that scale. Welcome to connect! 
+- Github: https://github.com/machichima
+- LinkedIn: https://www.linkedin.com/in/nary-yeh-1583b3213/

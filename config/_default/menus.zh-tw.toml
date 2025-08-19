@@ -47,20 +47,20 @@
  pageRef = "series"
  weight = 20
 
-[[main]]
- name = "分類"
- pageRef = "categories"
- weight = 30
+# [[main]]
+#  name = "分類"
+#  pageRef = "categories"
+#  weight = 30
 
 [[main]]
  name = "標籤"
  pageRef = "tags"
- weight = 40
+ weight = 30
 
 [[main]]
  name = "作者"
  pageRef = "authors"
- weight = 50
+ weight = 40
 
 
 # -- Footer Menu --

@@ -1,9 +1,9 @@
 name = "Jiawei Jiang"
-bio = "Machine Learning Engineer and Open Source Contributor"
-headline = "Flyte Committer"
-image = "authors/jiaweijiang.jpg"
+bio = "Never sell out | De-noobing"
+headline = "AI Infra Enthusiast"
+image = "https://www.gravatar.com/avatar/979a3111d52c0648f0913519cdbd02c8af22e306d86d4dd01ca32195927fdd8d?s=200"
 social = [
-  { github = "https://github.com/jiaweijiang" },
-  { linkedin = "https://linkedin.com/in/jiaweijiang" },
-  { email = "mailto:jiaweijiang@example.com" },
+  { github = "https://github.com/JiangJiaWei1103" },
+  { linkedin = "https://www.linkedin.com/in/jiawei-jiang-aka-abaojiang/" },
+  { email = "mailto:waynechuang97@gmail.com" },
 ]

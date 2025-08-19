@@ -1,11 +1,10 @@
 ---
-title: 'From Chaos to Scale-Orchestrating AI Pipelines with Flyte'
+title: "From Chaos to Scale — Orchestrating AI Pipelines with Flyte"
 date: 2025-08-18T11:00:19+08:00
 draft: false
 authors: ["naryyeh", "jiaweijiang"]
 series: ["Flyte"]
-tags: ["Data Engineer", "ML Platform"]
-categories: ["Introduction"]
+tags: ["Introduction", "Data Engineer", "ML Platform"]
 ---
 
 Since the term *big data* first introduced in the early 1990s, the volume of global data has grown at an exponential pace. As machine learning continues to rise, companies are building countless AI pipelines to solve real-world business problems, from predicting ad clicks to personalizing recommendations.
@@ -15,52 +14,62 @@ Since the term *big data* first introduced in the early 1990s, the volume of glo
 
 At its core, an AI pipeline can be thought of as:
 
+{{< katex >}}
 $$
 \text{AI Pipeline = Code + Data [2]}
 $$
 
-But in practice, building and managing these pipelines is far from simple. Developers often face two major problems:
+
+But in practice, building and managing these pipelines at scale is far from simple. As
+companies grow, two major problems emerge: deploying across multiple clusters becomes a
+nightmare, and pipelines break constantly in production.
+
+To address these pain points, Lyft created Flyte [3], an open-source orchestration
+platform designed to support tens of thousands of AI pipelines at scale.
 
 1. **Multi-cluster deployment** - Reliably ship code to production at scale, without endless manual fixes
-2. **Data flow** - Ensure data moves smoothly across a complex workflow of preprocessing, model training, serving, and evaluation
+    - 🤕 **Without Flyte**:
+        - Users need to manually set up clusters for different domains (e.g. development and production).
+        - Extra care should be taken to move workflow between domains and clusters
+        - Manual intervention is needed when nodes fail.
+    - 😄 **With Flyte**:
+        - Users can simply execute the workflow with `--domain` argument specifying "development" or "production".
+        - Flyte automatically determines where to run the code for you.
+        - If any node failed, Flyte will automatically transfer the workflow to other available nodes.
+2. **Robust pipeline** - Build resilient workflows that handle failures gracefully and ensure data integrity
+    - 🤕 **Without Flyte**: 
+        - Runtime type errors crash production pipelines.
+        - Inconsistent environments cause "works on my machine" issues.
+        - Tracking the exact code version that produced results can be difficult.
+    - 😄 **With Flyte**: 
+        - Strong typing catches errors before deployment.
+        - Containerized tasks ensure identical environments.
+        - Immutable workflow versions guarantee reproducibility.
 
-To address these pain points, Lyft created Flyte [3], an open-source orchestration platform designed to support tens of thousands of AI pipelines at scale.
+## Features
 
 Flyte tackles five specific challenges that AI teams commonly face:
 
 1. **Scalability** - Handle massive growth in requests and data with efficient concurrency
+    - Built on Kubernetes, Flyte automatically scales workflows across clusters and
+    handles node failures without manual intervention.
 2. **Reusability** - Reuse components across pipelines and business units, avoiding “reinventing the wheel."
+    - Centralized tasks and workflows components management across teams with cache
+    support to save time and compute resources
 3. **Reproducibility** - Ensure experiments can be replicated by mirroring dev environments in production
+    - Versions all components with packages and resources set, which guarantees
+    result consistency across development and production environments
 4. **Maintainability** - Operate and update thousands of pipelines with ease
-5. **Extensibility** - Integrate smoothly with third-party tools and services
-
-Today, Flyte is trusted by leading companies such as Tesla, Spotify, LinkedIn, and Toyota, and runs over 30 million tasks per day. For example, in a recent LinkedIn Engineering blog [4], the team unveiled their next-generation AI pipelines powered by Flyte, achieving 20–30× faster training and launch times, while enabling them to train models 200× larger than before.
-
-
-## Flyte Features 
-
-This section highlights key Flyte features with brief overviews. Detailed articles
-covering each topic will be published in future articles.
-
-- **Output caching** - Flyte automatically saves task results. When the same task runs
-again with identical inputs, Flyte reuses the cached output instead of re-executing the
-task, saving time and compute resources.
-- **Workflow versioning** - Flyte creates immutable versions of workflows, allowing
-different versions to run simultaneously without conflicts. When updating workflows,
-unchanged tasks can still reuse their cached results, avoiding unnecessary re-execution.
-- **Multi-cluster management** - Flyte separates workflow management from execution,
-allowing you to define workflows once in a central location and run them across multiple
-compute clusters as needed.
-
+    - Simple SDK interface separates workflow management from execution, allowing users
+    to define workflows once in a central location and run them across multiple clusters
 
 ![multi-region routing](./img/multi_region-routing.png "Figure 2. Flyte multi-region routing setup (Credit: [4])") 
 
-- **Automatic recovery** - When servers fail or need maintenance, Flyte automatically
-moves tasks to working machines. Tasks can resume from where they left off instead of
-starting over, minimizing lost work.
-- **Connect external services** - Flyte can run tasks on popular data platforms like
-Databricks, Snowflake, and AWS Batch while still providing centralized workflow
-management, monitoring, and error handling.
+5. **Extensibility** - Integrate smoothly with third-party tools and services
+    - Connects with popular data platforms like Databricks, Snowflake, and AWS Batch while
+    providing centralized workflow management, monitoring, and error handling
+
+Today, Flyte is trusted by leading companies such as Tesla, Spotify, LinkedIn, and Toyota, and runs over 30 million tasks per day. For example, in a recent LinkedIn Engineering blog [4], the team unveiled their next-generation AI pipelines powered by Flyte, achieving 20–30× faster training and launch times, while enabling them to train models 200× larger than before.
 
 
 ## How to Run a Workflow in Flyte?

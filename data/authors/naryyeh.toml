@@ -1,9 +1,9 @@
 name = "Nary Yeh"
 bio = "ML Platform Engineer & Open-Source Contributer"
 headline = "Software Engineer"
-image = "authors/naryyeh.jpg"
+image = "https://www.gravatar.com/avatar/f34123bf2509aeaea48b103a9e640b7e?s=200"
 social = [
   { github = "https://github.com/machichima" },
-  { linkedin = "https://linkedin.com/in/naryyeh" },
+  { linkedin = "https://www.linkedin.com/in/nary-yeh-1583b3213/" },
   { email = "mailto:nary12321@gmail.com" },
 ]
