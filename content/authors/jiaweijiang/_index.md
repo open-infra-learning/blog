@@ -1,13 +1,10 @@
 ---
 title: "Jiawei Jiang"
-bio: "Machine Learning Engineer and Open Source Contributor specializing in distributed systems and MLOps."
-headline: "Flyte Committer"
+bio: "Never sell out | De-noobing"
+headline: "AI Infra Enthusiast"
 # image: "authors/jiaweijiang.jpg"
-email: "jiaweijiang@example.com"
-website: "https://jiaweijiang-website.com"
-github: "https://github.com/jiaweijiang"
-linkedin: "https://linkedin.com/in/jiaweijiang"
-twitter: "https://twitter.com/jiaweijiang"
 ---
 
-Hi, I'm Jiawei Jiang! I love working on open source projects and building ML systems that make a real impact. I'm a Flyte committer passionate about workflow orchestration.
+Hi there! I am enthusiastic about building AI infrastructure, currently focusing on the LLM inference systems. Let's connect!
+- Github: https://github.com/JiangJiaWei1103
+- LinkedIn: https://www.linkedin.com/in/jiawei-jiang-aka-abaojiang/

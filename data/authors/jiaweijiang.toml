@@ -1,9 +1,8 @@
 name = "Jiawei Jiang"
-bio = "Machine Learning Engineer and Open Source Contributor"
-headline = "Flyte Committer"
-image = "authors/jiaweijiang.jpg"
+bio = "Never sell out | De-noobing"
+headline = "AI Infra Enthusiast"
 social = [
-  { github = "https://github.com/jiaweijiang" },
-  { linkedin = "https://linkedin.com/in/jiaweijiang" },
-  { email = "mailto:jiaweijiang@example.com" },
+  { github = "https://github.com/JiangJiaWei1103" },
+  { linkedin = "https://www.linkedin.com/in/jiawei-jiang-aka-abaojiang/" },
+  { email = "mailto:waynechuang97@gmail.com" },
 ]
