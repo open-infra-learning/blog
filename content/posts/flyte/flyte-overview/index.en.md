@@ -21,10 +21,12 @@ $$
 $$
 
 
-But in practice, building and managing these pipelines is far from simple. Developers often face
-problems for setting up multi-cluster deployment and maintaining robuest pipeline. To address these
-pain points, Lyft created Flyte [3], an open-source orchestration platform designed to support tens
-of thousands of AI pipelines at scale.
+But in practice, building and managing these pipelines at scale is far from simple. As
+companies grow, two major problems emerge: deploying across multiple clusters becomes a
+nightmare, and pipelines break constantly in production.
+
+To address these pain points, Lyft created Flyte [3], an open-source orchestration
+platform designed to support tens of thousands of AI pipelines at scale.
 
 1. **Multi-cluster deployment** - Reliably ship code to production at scale, without endless manual fixes
     - 🤕 **Without Flyte**:
