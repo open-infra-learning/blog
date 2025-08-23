@@ -4,6 +4,7 @@ date: 2025-08-18T11:00:19+08:00
 draft: false
 authors: ["naryyeh", "jiaweijiang"]
 series: ["How to Flyte"]
+series_order: 1
 tags: ["data-engineer", "ml-platform"]
 ---
 
