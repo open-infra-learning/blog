@@ -38,8 +38,8 @@ Overview")
     and coordinates with the data plane
 - **Data Plane**: The execution engine that runs workflows on Kubernetes and reports status back to the
 control plane
-    - **FlytePropeller**: Kubernetes controller that schedules tasks, manages dependencies, and ensures
-    workflow completion
+    - **FlytePropeller**: Kubernetes controller that handles task reconciliation (ensuring actual state
+    matches desired state) and invokes the appropriate FlytePlugin for task execution
     - **FlytePlugin**: Extensible plugins that handle different task types by creating pods or invoking
     Kubernetes operators
 
