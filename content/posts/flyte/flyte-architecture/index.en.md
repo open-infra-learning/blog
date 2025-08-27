@@ -15,90 +15,88 @@ cascade:
 draft: false
 ---
 
-This article will focus on introducing core components in Flyte, their job, and how they
-interact with each other to form this awesome platform.
+Ever wondered how Flyte orchestrates complex workflows across distributed systems? This article breaks down
+Flyte's core architecture, exploring how its components work together to transform your Python code into
+scalable, production-ready workflows.
 
 ## Overview
 
-This part is the simplified version of Flyte architecture. For full details, please refer
-to Flyte official document: https://www.union.ai/docs/v1/flyte/architecture/component-architecture/
+Flyte's architecture consists of three logical planes that work together seamlessly, namely user, control, and
+data plane. For comprehensive details, see the [official
+documentation](https://www.union.ai/docs/v1/flyte/architecture/component-architecture/).
 
-![flyte-architecture-overview-simple](img/flyte-architecture-overview-simple.png "Simple Flyte
-Architecture Overview")
-
-Flyte can be separated into 3 logical planes, namely user, control, and data plane. Below
-are the brief description of components within each plane.
-
-- **User Plane**: Interaction interface between platform and user
-    - **Flytekit**: Python SDK
-    - **FLyteConsole**: UI interface
-    - **FlyteCTL**: CLI tool
-- **Control Plane**: Transport the request from user to data plane. Record the workflow
-status and handle scheduling.
-    - **FlyteAdmin**: Validate and compile the workflow to executable for FlytePropeller
-    to execute it
-- **Data Plane**: Dispatch workflow into Kubernetes pods for execution. Handle reconcile
-and keep status updated to the control plane.
-    - **FlytePropeller**: Kubernetes controller handling task reconciliation and invoking
-    the proper FlytePlugin for task execution.
-    - **FlytePlugin**: Create pod or call the proper Kuberanetes operator for task
-    execution
+![flyte-architecture-overview-simple](img/flyte-architecture-overview-simple.png "Simple Flyte Architecture
+Overview")
 
 
-In short, the process of executing the workflow will be:
-1. User submit a workflow through FlyteKit, FlyteConsole, or FlyteCTL.
-2. FlyteAdmin validate the input and compile the workflow, then forward the workflow to
-   FlytePropeller
-3. FlytePropeller choose a proper FlytePlugin to execute the workflow, then keep tracking
-   and reconciling to ensure the workflow finish successfully
+- **User Plane**: Your interface to interact with the Flyte platform
+    - **FlyteKit**: Python SDK for defining workflows, tasks, and launch plans using decorators
+    - **FlyteConsole**: Web-based UI for visualizing workflows and monitoring executions
+    - **FlyteCTL**: Command-line tool for interacting with Flyte cluster from your terminal
+- **Control Plane**: The brain of Flyte that processes user requests and manages workflow lifecycle
+    - **FlyteAdmin**: Central API server that validates inputs, compiles workflows into executable formats,
+    and coordinates with the data plane
+- **Data Plane**: The execution engine that runs workflows on Kubernetes and reports status back to the
+control plane
+    - **FlytePropeller**: Kubernetes controller that schedules tasks, manages dependencies, and ensures
+    workflow completion
+    - **FlytePlugin**: Extensible plugins that handle different task types by creating pods or invoking
+    Kubernetes operators
 
+
+Here's how these components work together to execute a workflow:
+1. User submits a workflow through FlyteKit, FlyteConsole, or FlyteCTL
+2. FlyteAdmin validates the input, compiles the workflow, and forwards it to FlytePropeller
+3. FlytePropeller selects the appropriate FlytePlugin to execute tasks and monitors progress until completion
+
+Now let's dive deeper into what happens during each step of workflow execution.
 
 ## Workflow Execution
 
-Below we will dive in a bit more of what each component do when executing a workflow
-
+Let's look into what each component does during workflow execution in detail.
 
 {{< alert "circle-info">}}
-Flyte workflow have 3 main components: launch plane, workflow, and task.
-- **launch plan**: Templates to define input for the workflow
-- **workflow**: Grouping tasks to form a whole pipeline
-- **task**: A step or a unit of computation (e.g. function that do data transform, model
-training, etc.)
+Flyte workflows have 3 main components: launch plan, workflow, and task.
+- **Launch plan**: Template that defines inputs and configuration for the workflow
+- **Workflow**: Collection of tasks organized into a complete pipeline  
+- **Task**: Individual unit of computation (e.g., data transformation, model training, etc.)
 
-These are the brief description for those components, and we will have more articles
-depicting more details on them and their variations.
+These are brief descriptions of the core components - we'll cover them in more detail in future articles.
 {{< /alert >}}
 
 ![register-execute-workflow](img/register-execute-workflow.png "Register and Execute Workflow")
 
-1. Client (User Plane) send request `getLaunchPlan` to get the launch plan from FlyteAdmin
-    - If user does not set the launch plan explicitly, the default lauch plan will be
-    created, which is as same name as the workflow
-2. `FlyteAdmin` return the requested launch plan
-3. Client validate if all inputs are provided based on the launch plan returned by
-   `FlyteAdmin`
-4. Workflow execution request is sent to `FlyteAdmin` from the client
-5. `FlyteAdmin` validates the input and compile workflow and tasks
-6. Upload the compiled task and workflow to Flyte metadata storage. If the workflow is
-   compiled before, fetch from the metadata storage.
-7. Translate compiled workflow to an executable format with inputs. The executable format
-   here is the `flyteworkflow` CR(custom resource)
-    - CR is the custom resources that can be
-run on k8s with customized behaviour.
-8. `FlytePropeller` get the `flyteworkflow` CR and try to execute it by invoking `FlytePlugin`,
-   and keep tracking to ensure the workflow success
-9. During the workflow execution, `FlytePropeller` will keep `FlyteAdmin` updated about the
-   status for workflows
+1. **Client requests launch plan**: The client sends a `getLaunchPlan` request to FlyteAdmin
+    - If no launch plan is explicitly set, a default launch plan is created with the same name as the workflow
+2. **FlyteAdmin returns launch plan**: FlyteAdmin responds with the requested launch plan details
+3. **Client validates inputs**: The client checks if all required inputs are provided based on the launch plan
+4. **Execution request submitted**: The client sends a workflow execution request to FlyteAdmin
+5. **FlyteAdmin processes request**: FlyteAdmin validates inputs and compiles the workflow and tasks
+6. **Metadata storage**: The compiled workflow is uploaded to Flyte's metadata storage (or fetched if
+previously compiled)
+7. **Workflow translation**: The compiled workflow is translated into a `flyteworkflow` custom resource (CR)
+with inputs
+    - Custom resources (CRs) let you create your own resource types in Kubernetes, just like how Kubernetes
+    has pods and services. Flyte uses this to create a `flyteworkflow` resource type that Kubernetes can
+    understand and manage
+8. **FlytePropeller executes**: FlytePropeller retrieves the `flyteworkflow` CR, invokes appropriate
+FlytePlugins for execution, and monitors execution status
+9. **Status updates**: FlytePropeller continuously reports workflow status back to FlyteAdmin
 
-This is the brief steps heppens when executing a workflow, and how each component working
-together.
+These steps show how Flyte's components work together seamlessly. From user request to
+workflow completion, each component plays a crucial role in ensuring reliable, scalable
+execution.
 
 
 ## Summary
 
-Executing workflow in Flyte requires the coordination between client, `FlyteAdmin`, and
-`FlytePropeller`. To summarize:
+Flyte's three-plane architecture enables scalable workflow orchestration through clear separation of
+responsibilities:
 
-- Client (`FlyteKit`, `FlyteConsole`, `FlyteCLI`): SDK/Tools for user manipulate Flyte
-- `FlyteAdmin`: Entry point for workflow execution.
-- `FlytePropeller`: Handle actual workflow execution
+- **Client tools** (`FlyteKit`, `FlyteConsole`, `FlyteCTL`): Your interface for defining, submitting, and
+monitoring workflows
+- **FlyteAdmin**: Central control point that validates, compiles, and coordinates workflow execution
+- **FlytePropeller**: Kubernetes-native execution engine that runs workflows and manages their lifecycle
+
+This architectural design ensures reliability, scalability, and maintainability for production-grade workflow
+orchestration.
