@@ -1,6 +1,6 @@
 ---
 title: "Flyte Architecture: How workflow runs"
-summary: "Components in Flyte"
+summary: "Explore Flyte's three-plane architecture and understand how user plane, control plane, and data plane work together to execute workflows reliably at scale."
 description: ""
 date: 2025-08-23T20:09:42+08:00
 authors: ["naryyeh"]
@@ -96,7 +96,7 @@ responsibilities:
 - **Client tools** (`FlyteKit`, `FlyteConsole`, `FlyteCTL`): Your interface for defining, submitting, and
 monitoring workflows
 - **FlyteAdmin**: Central control point that validates, compiles, and coordinates workflow execution
-- **FlytePropeller**: Kubernetes-native execution engine that runs workflows and manages their lifecycle
+- **FlytePropeller**: Kubernetes controller that dispatch workflows and manages their lifecycle
 
 This architectural design ensures reliability, scalability, and maintainability for production-grade workflow
 orchestration.
