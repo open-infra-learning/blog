@@ -78,7 +78,7 @@ The following steps illustrate how Flyte processes a workflow from client reques
 previously compiled).
 7. **Workflow translation**: The compiled workflow is translated into a `flyteworkflow` custom resource (CR)
 with inputs.
-    - CustomResourceDefinitions (CRDs) allow you to extend Kubernetes by defining your own
+    - Custom Resource Definitions (CRDs) allow you to extend Kubernetes by defining your own
     resource types, similar to how built-in resources like Pod and Service are managed. A
     Custom Resource (CR) is an instance of such a type. Flyte uses this by defining a
     `flyteworkflow` CRD.

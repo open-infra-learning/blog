@@ -45,10 +45,10 @@ Flyte 的架構可以分為三層，分別是用戶、控制、以及資料層�
 
 ## 執行工作流程
 
-讓我們詳細了解每個組件在 workflow 執行期間的作用。
-
 {{< alert "circle-info">}}
-Flyte 工作流程有 3 個主要組件: launch plan、workflow 和 task。
+
+深入探討 Flyte workflow 怎麼被執行前，讓我們先來簡單介紹 3 個 Flyte 的核心概念: launch
+plan、workflow、以及 task。
 - **launch plan**: 定義 workflow 輸入的模板
 - **workflow**: 由多個 task 組合成的完整流水線
 - **task**: 個別的計算單元（例如資料轉換、模型訓練等）
@@ -58,6 +58,9 @@ Flyte 工作流程有 3 個主要組件: launch plan、workflow 和 task。
 
 ![register-execute-workflow](img/register-execute-workflow.png "註冊並執行 workflow")
 
+
+以下的步驟描述 Flyte 從 user request 到執行 workflow 的流程:
+
 1. **客戶端發送 launch plan 請求**: 客戶端向 FlyteAdmin 發送取得 launch plan 的請求 (`getLaunchPlan`)
     - 如果沒有明確設定啟動計畫，會建立一個與工作流程同名的預設啟動計畫
 2. **FlyteAdmin 回傳 launch plan**: FlyteAdmin 回傳客戶端要的 launch plan
@@ -66,9 +69,9 @@ Flyte 工作流程有 3 個主要組件: launch plan、workflow 和 task。
 5. **FlyteAdmin 處理請求**: FlyteAdmin 驗證輸入並編譯 workflow 和 task
 6. **中繼資料儲存**: 編譯後的 workflow 上傳到 Flyte 的 metadata storage（如果之前已編譯過，則直接從 storage 中拿取）
 7. **workflow 轉換**: 編譯後的 workflow 會與輸入結合，轉換為 custom resource (CR) `flyteworkflow`
-    - Custom resource (CR) 讓你可以在 Kubernetes 中建立自己的資源，像是 Kubernetes 中的
-    pod 跟 service 都是一個 CR。 Flyte 使用這個功能建立 `flyteworkflow` 資源，讓
-    Kubernetes 能夠理解和管理
+    - CustomResourceDefinitions (CRDs) 讓你可以透過定義自己的資源類型來擴展 Kubernetes，
+    像是 Pod 和 Service 都是一個 CRD。 Flyte 透過 `flyteworkflow` CRD 來讓 Kubernetes
+    能夠理解和管理 workflow。
 8. **FlytePropeller 執行**: FlytePropeller 存取 `flyteworkflow` CR，調用適當的 FlytePlugin 來執行 workflow，並監控執行狀態
 9. **狀態更新**: FlytePropeller 持續向 FlyteAdmin 回報工作流程狀態
 
