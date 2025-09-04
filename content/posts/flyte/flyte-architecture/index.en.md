@@ -45,43 +45,46 @@ control plane
 
 
 Here's how these components work together to execute a workflow:
-1. User submits a workflow through FlyteKit, FlyteConsole, or FlyteCTL
-2. FlyteAdmin validates the input, compiles the workflow, and forwards it to FlytePropeller
-3. FlytePropeller selects the appropriate FlytePlugin to execute tasks and monitors progress until completion
+1. User submits a workflow through FlyteKit, FlyteConsole, or FlyteCTL.
+2. FlyteAdmin validates the input, compiles the workflow, and forwards it to FlytePropeller.
+3. FlytePropeller selects the appropriate FlytePlugin to execute tasks and monitors progress until completion.
 
 Now let's dive deeper into what happens during each step of workflow execution.
 
 ## Workflow Execution
 
-Let's look into what each component does during workflow execution in detail.
-
 {{< alert "circle-info">}}
-Flyte workflows have 3 main components: launch plan, workflow, and task.
+
+Before detailing the workflow execution, we briefly introduce three key Flyte concepts:
+launch plan, workflow, and task.
 - **Launch plan**: Template that defines inputs and configuration for the workflow
 - **Workflow**: Collection of tasks organized into a complete pipeline  
 - **Task**: Individual unit of computation (e.g., data transformation, model training, etc.)
 
-These are brief descriptions of the core components - we'll cover them in more detail in future articles.
+We'll discuss them in more detail in future articles.
 {{< /alert >}}
 
 ![register-execute-workflow](img/register-execute-workflow.png "Register and Execute Workflow")
 
-1. **Client requests launch plan**: The client sends a `getLaunchPlan` request to FlyteAdmin
-    - If no launch plan is explicitly set, a default launch plan is created with the same name as the workflow
-2. **FlyteAdmin returns launch plan**: FlyteAdmin responds with the requested launch plan details
-3. **Client validates inputs**: The client checks if all required inputs are provided based on the launch plan
-4. **Execution request submitted**: The client sends a workflow execution request to FlyteAdmin
-5. **FlyteAdmin processes request**: FlyteAdmin validates inputs and compiles the workflow and tasks
+The following steps illustrate how Flyte processes a workflow from client request to execution:
+
+1. **Client requests launch plan**: The client sends a `getLaunchPlan` request to FlyteAdmin.
+    - If no launch plan is explicitly set, a default launch plan is created with the same name as the workflow.
+2. **FlyteAdmin returns launch plan**: FlyteAdmin responds with the requested launch plan details.
+3. **Client validates inputs**: The client checks if all required inputs are provided based on the launch plan.
+4. **Execution request submitted**: The client sends a workflow execution request to FlyteAdmin.
+5. **FlyteAdmin processes request**: FlyteAdmin validates inputs and compiles the workflow and tasks.
 6. **Metadata storage**: The compiled workflow is uploaded to Flyte's metadata storage (or fetched if
-previously compiled)
+previously compiled).
 7. **Workflow translation**: The compiled workflow is translated into a `flyteworkflow` custom resource (CR)
-with inputs
-    - Custom resources (CRs) let you create your own resource types in Kubernetes, just like how Kubernetes
-    has pods and services. Flyte uses this to create a `flyteworkflow` resource type that Kubernetes can
-    understand and manage
+with inputs.
+    - CustomResourceDefinitions (CRDs) allow you to extend Kubernetes by defining your own
+    resource types, similar to how built-in resources like Pod and Service are managed. A
+    Custom Resource (CR) is an instance of such a type. Flyte uses this by defining a
+    `flyteworkflow` CRD.
 8. **FlytePropeller executes**: FlytePropeller retrieves the `flyteworkflow` CR, invokes appropriate
-FlytePlugins for execution, and monitors execution status
-9. **Status updates**: FlytePropeller continuously reports workflow status back to FlyteAdmin
+FlytePlugins for execution, and monitors execution status.
+9. **Status updates**: FlytePropeller continuously reports workflow status back to FlyteAdmin.
 
 These steps show how Flyte's components work together seamlessly. From user request to
 workflow completion, each component plays a crucial role in ensuring reliable, scalable
