@@ -30,7 +30,7 @@ Flyte 的架構可以分為三層，分別是用戶、控制、以及資料層�
     - **FlyteConsole**: 網頁 UI，用於視覺化 workflow 和監控執行狀況
     - **FlyteCTL**: CLI 工具，從終端機與 Flyte 叢集互動
 - **控制層**: Flyte 的大腦，處理用戶請求並管理 workflow 和生命週期
-    - **FlyteAdmin**: 中央 API 伺服器，驗證輸入、將工作流程編譯成可執行格式、以及與資料層協調
+    - **FlyteAdmin**: 中央 API 伺服器，驗證輸入、將 workflow 編譯成可執行的格式、以及與資料層溝通
 - **資料層**: 在 Kubernetes 上執行 workflow 並向控制層回報狀態
     - **FlytePropeller**: Kubernetes 控制器，負責任務調和（確保實際狀態與期望狀態一致）並調用合適的 FlytePlugin 執行任務
     - **FlytePlugin**: 可擴展的外掛，透過建立 pod 或調用 Kubernetes operator 來處理不同類型的任務
@@ -47,7 +47,7 @@ Flyte 的架構可以分為三層，分別是用戶、控制、以及資料層�
 
 現在讓我們深入了解執行 workflow 的每個步驟中發生了什麼。
 
-## 執行工作流程
+## 執行 workflow
 
 {{< alert "circle-info">}}
 
@@ -66,7 +66,7 @@ plan、workflow、以及 task。
 以下的步驟描述 Flyte 從 user request 到執行 workflow 的流程:
 
 1. **客戶端發送 launch plan 請求**: 客戶端向 FlyteAdmin 發送取得 launch plan 的請求 (`getLaunchPlan`)
-    - 如果沒有明確設定 launch plan，會建立一個與工作流程同名的預設 launch plan
+    - 如果沒有明確設定 launch plan，會建立一個與 workflow 同名的預設 launch plan
 2. **FlyteAdmin 回傳 launch plan**: FlyteAdmin 回傳客戶端要的 launch plan
 3. **客戶端驗證輸入**: 客戶端檢查 launch plan 是否提供了所有 workflow 需要的 input
 4. **提交執行請求**: 客戶端向 FlyteAdmin 發送 workflow 執行請求
@@ -84,8 +84,8 @@ plan、workflow、以及 task。
 
 Flyte 的三層架構區分出明確的職責: 
 
-- **客戶端工具** (`FlyteKit`、`FlyteConsole`、`FlyteCTL`): 定義、提交和監控工作流程的介面
-- **FlyteAdmin**: 驗證、編譯和協調工作流程執行的中央控制器
+- **客戶端工具** (`FlyteKit`、`FlyteConsole`、`FlyteCTL`): 定義、提交和監控 workflow 的介面
+- **FlyteAdmin**: 驗證、編譯和協調 workflow 執行的中央控制器
 - **FlytePropeller**: Kubernetes 控制器，負責調用合適的工具來執行 workflow 並管理其生命週期
 
 這樣的架構設計讓 Flyte 在生產環境中能夠穩定運行、輕鬆擴展，同時保持良好的維護性。
