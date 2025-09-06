@@ -34,7 +34,7 @@ Flyte 的架構可以分為三層，分別是用戶、控制、以及資料層�
 - **資料層**: 在 Kubernetes 上執行 workflow 並向控制層回報狀態
     - **FlytePropeller**: Kubernetes 控制器，負責任務調和（確保實際狀態與期望狀態一致）並調用合適的 FlytePlugin 執行任務
     - **FlytePlugin**: 可擴展的外掛，透過建立 pod 或調用 Kubernetes operator 來處理不同類型的任務
-        - Flyte 支援許多串些各種運算引擎和雲端服務的 plugins，包括 Spark、Ray、PyTorch、Dask、AWS
+        - Flyte 有許多串接各種運算引擎和雲端服務的 plugins，包括 Spark、Ray、PyTorch、Dask、AWS
         Batch、BigQuery、Snowflake 等等。
         [官方文件](https://www.union.ai/docs/v1/flyte/deployment/flyte-plugins/kubernetes-plugins/)中有列出詳細的
         plugin list 以及設定方式。
