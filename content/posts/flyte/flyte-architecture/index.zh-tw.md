@@ -34,6 +34,10 @@ Flyte 的架構可以分為三層，分別是用戶、控制、以及資料層�
 - **資料層**: 在 Kubernetes 上執行 workflow 並向控制層回報狀態
     - **FlytePropeller**: Kubernetes 控制器，負責任務調和（確保實際狀態與期望狀態一致）並調用合適的 FlytePlugin 執行任務
     - **FlytePlugin**: 可擴展的外掛，透過建立 pod 或調用 Kubernetes operator 來處理不同類型的任務
+        - Flyte 支援許多串些各種運算引擎和雲端服務的 plugins，包括 Spark、Ray、PyTorch、Dask、AWS
+        Batch、BigQuery、Snowflake 等等。
+        [官方文件](https://www.union.ai/docs/v1/flyte/deployment/flyte-plugins/kubernetes-plugins/)中有列出詳細的
+        plugin list 以及設定方式。
 
 
 以下是這些組件如何相互搭配來執行 workflow:
@@ -62,7 +66,7 @@ plan、workflow、以及 task。
 以下的步驟描述 Flyte 從 user request 到執行 workflow 的流程:
 
 1. **客戶端發送 launch plan 請求**: 客戶端向 FlyteAdmin 發送取得 launch plan 的請求 (`getLaunchPlan`)
-    - 如果沒有明確設定啟動計畫，會建立一個與工作流程同名的預設啟動計畫
+    - 如果沒有明確設定 launch plan，會建立一個與工作流程同名的預設 launch plan
 2. **FlyteAdmin 回傳 launch plan**: FlyteAdmin 回傳客戶端要的 launch plan
 3. **客戶端驗證輸入**: 客戶端檢查 launch plan 是否提供了所有 workflow 需要的 input
 4. **提交執行請求**: 客戶端向 FlyteAdmin 發送 workflow 執行請求
@@ -73,7 +77,7 @@ plan、workflow、以及 task。
     像是 Pod 和 Service 都是一個 CRD。 Flyte 透過 `flyteworkflow` CRD 來讓 Kubernetes
     能夠理解和管理 workflow。
 8. **FlytePropeller 執行**: FlytePropeller 存取 `flyteworkflow` CR，調用適當的 FlytePlugin 來執行 workflow，並監控執行狀態
-9. **狀態更新**: FlytePropeller 持續向 FlyteAdmin 回報工作流程狀態
+9. **狀態更新**: FlytePropeller 持續向 FlyteAdmin 回報 workflow 狀態
 
 
 ## 總結

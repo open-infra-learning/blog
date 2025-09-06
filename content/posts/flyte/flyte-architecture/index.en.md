@@ -1,8 +1,8 @@
 ---
 title: "Flyte Architecture: How workflow runs"
 summary: "Explore Flyte's three-plane architecture and understand how user plane, control plane, and data plane work together to execute workflows reliably at scale."
-description: ""
 date: 2025-08-23T20:09:42+08:00
+description: ""
 authors: ["naryyeh"]
 slug: "flyte-architecture"
 tags: ["Data Engineer", "ML Platform"]
@@ -42,6 +42,10 @@ control plane
     matches desired state) and invokes the appropriate FlytePlugin for task execution
     - **FlytePlugin**: Extensible plugins that handle different task types by creating pods or invoking
     Kubernetes operators
+        - Flyte supports a wide range of plugins for various compute engines and cloud services,
+        including Spark, Ray, PyTorch, Dask, AWS Batch, BigQuery, Snowflake, and many more.
+        You can refer to all available plugins and their setup guide
+        [here](https://www.union.ai/docs/v1/flyte/deployment/flyte-plugins/kubernetes-plugins/)
 
 
 Here's how these components work together to execute a workflow:
