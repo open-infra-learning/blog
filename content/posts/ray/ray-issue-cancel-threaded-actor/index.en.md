@@ -171,4 +171,4 @@ See further information here: https://github.com/ray-project/ray/pull/58914/file
 
 ## Summary
 
-This is my first Ray PR working on a feature and **digging** into the C++ side. It has been a pretty exciting experience, and I plan to keep contributing to Ray with more cool PRs ahead!
+This is my first Ray PR working on a feature and digging into the C++ side. It has been a pretty exciting experience, and I plan to keep contributing to Ray with more cool PRs ahead!
