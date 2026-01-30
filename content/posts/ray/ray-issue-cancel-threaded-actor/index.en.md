@@ -14,6 +14,11 @@ cascade:
 draft: false
 ---
 
+
+> - Issue link: https://github.com/ray-project/ray/issues/58213
+> - My PR: https://github.com/ray-project/ray/pull/58914
+
+
 ## Issue Description
 
 Originally, cancelling threaded actor task is not supported. This issue is requesting adding the support for cancel threaded actor with an `is_canceled` flag to detect the cancellation. 
